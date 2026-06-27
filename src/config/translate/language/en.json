@@ -1,0 +1,14 @@
+{
+  "welcome_message": "Welcome",
+  "login_description": "Enter your credentials to access the dashboard.",
+  "username_label": "Username",
+  "enter_username": "Enter Username",
+  "password_label": "Password",
+  "enter_password": "Enter Password",
+  "sign_in": "Sign In",
+  "signing_in": "Signing In...",
+  "login_failed": "Login failed. Please try again.",
+  "network_error": "Network error. Could not connect to the server.",
+  "validation_username_required": "Username is required",
+  "validation_password_required": "Password is required"
+}

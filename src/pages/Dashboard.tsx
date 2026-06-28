@@ -9,6 +9,7 @@ const Dashboard = () => {
   const [username, setUsername] = useState('Admin');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [stockReport, setStockReport] = useState<any[]>([]);
   
   const [stats, setStats] = useState({
     products: 0,
@@ -32,11 +33,12 @@ const Dashboard = () => {
         if (data.status) {
           setUsername(data.data.username);
           setStats({
-            products: data.data.products || 124,
+            products: data.data.stockReport?.length || 0,
             customers: data.data.customers || 892,
             revenue: data.data.revenue || 45200,
             active: data.data.active || 34
           });
+          setStockReport(data.data.stockReport || []);
         } else {
           setError(data.message || 'Failed to load dashboard data');
         }
@@ -68,75 +70,31 @@ const Dashboard = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
         <div>
           <h1>Welcome, {username}</h1>
-          <p style={{ margin: 0 }}>Overview of your inventory and metrics.</p>
-        </div>
-        <button className="btn btn-primary">Download Report</button>
-      </div>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', marginBottom: '32px' }}>
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--accents-6)' }}>Total Products</span>
-            <Package size={16} color="var(--accents-5)" />
-          </div>
-          <div style={{ fontSize: '32px', fontWeight: 700, letterSpacing: '-1px' }}>
-            {stats.products}
-          </div>
-        </div>
-        
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--accents-6)' }}>Active Customers</span>
-            <Users size={16} color="var(--accents-5)" />
-          </div>
-          <div style={{ fontSize: '32px', fontWeight: 700, letterSpacing: '-1px' }}>
-            {stats.customers}
-          </div>
-        </div>
-        
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--accents-6)' }}>Total Revenue</span>
-            <DollarSign size={16} color="var(--accents-5)" />
-          </div>
-          <div style={{ fontSize: '32px', fontWeight: 700, letterSpacing: '-1px' }}>
-            ${stats.revenue.toLocaleString()}
-          </div>
-        </div>
-        
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--accents-6)' }}>Active Orders</span>
-            <Activity size={16} color="var(--accents-5)" />
-          </div>
-          <div style={{ fontSize: '32px', fontWeight: 700, letterSpacing: '-1px' }}>
-            {stats.active}
-          </div>
         </div>
       </div>
-      
-      <div className="card" style={{ padding: '0' }}>
-        <div style={{ padding: '24px', borderBottom: '1px solid var(--border-color)' }}>
-          <h2 style={{ fontSize: '16px', margin: 0 }}>Recent Activity</h2>
-        </div>
-        <div style={{ padding: '24px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {[1, 2, 3].map(item => (
-              <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '16px', paddingBottom: '16px', borderBottom: item !== 3 ? '1px solid var(--accents-2)' : 'none' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accents-2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Package size={16} />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: '14px', fontWeight: 500 }}>New order received</div>
-                  <div style={{ fontSize: '12px', color: 'var(--accents-5)' }}>Order #100{item} from John Doe</div>
-                </div>
-                <div style={{ fontSize: '12px', color: 'var(--accents-5)' }}>
-                  {item * 2} hours ago
-                </div>
-              </div>
-            ))}
+    
+      <div style={{ marginBottom: '24px' }}>
+        <h2 style={{ fontSize: '18px', margin: 0 }}>Stock Report (Closing Stock)</h2>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', paddingBottom: '32px' }}>
+        {stockReport.map(item => (
+          <div key={item.id} className="card">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--accents-6)' }}>{item.name}</span>
+              <Package size={16} color="var(--accents-5)" />
+            </div>
+            <div style={{ fontSize: '32px', fontWeight: 700, letterSpacing: '-1px', color: item.closing_stock > 0 ? 'var(--foreground-color)' : 'var(--error-color)' }}>
+              {Number(item.closing_stock).toFixed(3)}
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--accents-5)', marginTop: '8px' }}>Item #{item.id}</div>
           </div>
-        </div>
+        ))}
+        {stockReport.length === 0 && (
+          <div style={{ gridColumn: '1 / -1', textAlign: 'center', color: 'var(--accents-5)', padding: '48px', border: '1px dashed var(--border-color)', borderRadius: '8px' }}>
+            No stock data available.
+          </div>
+        )}
       </div>
     </div>
   );

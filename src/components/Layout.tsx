@@ -3,7 +3,7 @@ import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 import { 
   Box, LogOut, LayoutDashboard, Package, 
   Users, ShoppingCart, FileText, UserCheck, 
-  Settings, Receipt 
+  Settings, Receipt, PackageMinus
 } from 'lucide-react';
 import { logoutUser } from '../services/auth/authService';
 import { getItem, deleteDB } from '../utils/db';
@@ -70,37 +70,10 @@ const Layout = () => {
             Item Inwards
           </NavLink>
           
-          <NavLink to="/customers" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
-            <Users size={18} />
-            Customers
+          <NavLink to="/item-outwards" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
+            <PackageMinus size={18} />
+            Item Outwards
           </NavLink>
-          
-          <NavLink to="/vendors" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
-            <UserCheck size={18} />
-            Vendors
-          </NavLink>
-          
-          <NavLink to="/sales-orders" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
-            <ShoppingCart size={18} />
-            Sales Orders
-          </NavLink>
-          
-          <NavLink to="/invoices" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
-            <Receipt size={18} />
-            Invoices
-          </NavLink>
-          
-          <NavLink to="/purchase-orders" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
-            <FileText size={18} />
-            Purchase Orders
-          </NavLink>
-          
-          <div style={{ marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '16px' }}>
-            <NavLink to="/settings" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
-              <Settings size={18} />
-              Settings
-            </NavLink>
-          </div>
         </nav>
       </aside>
 

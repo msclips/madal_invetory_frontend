@@ -58,5 +58,13 @@
   "failed_fetch_item_inward": "Failed to fetch item inward",
   "loading_item_inward": "Loading item inward...",
   "no_item_inward_found": "No item inward found.",
-  "add_item_inward_title": "Add New Item Inward"
+  "add_item_inward_title": "Add New Item Inward",
+  "item_outward_title": "Item Outward",
+  "item_outward_description": "Manage your outgoing items",
+  "add_item_outward": "Add Item Outward",
+  "search_item_outward": "Search item outward...",
+  "failed_fetch_item_outward": "Failed to fetch item outward",
+  "loading_item_outward": "Loading item outward...",
+  "no_item_outward_found": "No item outward found.",
+  "add_item_outward_title": "Add New Item Outward"
 }

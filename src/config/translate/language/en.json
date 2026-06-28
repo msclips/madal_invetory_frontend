@@ -50,5 +50,13 @@
   "quantity": "Quantity",
   "validation_date_required": "Date is required",
   "validation_item_required": "Item is required",
-  "validation_quantity_required": "Quantity is required and must be greater than 0"
+  "validation_quantity_required": "Quantity is required and must be greater than 0",
+  "item_inward_title": "Item Inward",
+  "item_inward_description": "Manage your incoming items",
+  "add_item_inward": "Add Item Inward",
+  "search_item_inward": "Search item inward...",
+  "failed_fetch_item_inward": "Failed to fetch item inward",
+  "loading_item_inward": "Loading item inward...",
+  "no_item_inward_found": "No item inward found.",
+  "add_item_inward_title": "Add New Item Inward"
 }

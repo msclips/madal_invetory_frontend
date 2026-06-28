@@ -11,6 +11,12 @@ export const getItemTableConfig = (translang: any): ColumnConfig[] => [
 
 export const getOpeningStockTableConfig = (translang: any): ColumnConfig[] => [
   { label: translang.date, key: 'date' },
-  { label: translang.item_name, key: 'material_name', render: (_, item) => item.material_name ? item.material_name : 'N/A' },
+  { label: translang.item_name, key: 'item_name', render: (_, item) => item.item_name ? item.item_name : 'N/A' },
+  { label: translang.quantity, key: 'qty', render: (val) => Number(val).toFixed(3) },
+];
+
+export const getItemInwardTableConfig = (translang: any): ColumnConfig[] => [
+  { label: translang.date, key: 'date' },
+  { label: translang.item_name, key: 'item_name', render: (_, item) => item.item_name ? item.item_name : 'N/A' },
   { label: translang.quantity, key: 'qty', render: (val) => Number(val).toFixed(3) },
 ];

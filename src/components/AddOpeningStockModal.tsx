@@ -14,7 +14,7 @@ interface AddOpeningStockModalProps {
 const AddOpeningStockModal: React.FC<AddOpeningStockModalProps> = ({ isOpen, onClose, onSuccess }) => {
   const { translang } = useTranslate();
   const [items, setItems] = useState<{ id: number; name: string }[]>([]);
-  const [formData, setFormData] = useState({ date: new Date().toISOString().split('T')[0], material_id: '', qty: '' });
+  const [formData, setFormData] = useState({ date: new Date().toISOString().split('T')[0], item_id: '', qty: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState<{ [key: string]: string }>({});
@@ -44,8 +44,8 @@ const AddOpeningStockModal: React.FC<AddOpeningStockModalProps> = ({ isOpen, onC
     if (!formData.date.trim()) {
       errors.date = translang.validation_date_required;
     }
-    if (!formData.material_id) {
-      errors.material_id = translang.validation_item_required;
+    if (!formData.item_id) {
+      errors.item_id = translang.validation_item_required;
     }
     if (!formData.qty || isNaN(Number(formData.qty)) || Number(formData.qty) <= 0) {
       errors.qty = translang.validation_quantity_required;
@@ -63,12 +63,12 @@ const AddOpeningStockModal: React.FC<AddOpeningStockModalProps> = ({ isOpen, onC
     try {
       const response = await storeOpeningStock({ 
         date: formData.date, 
-        material_id: Number(formData.material_id), 
+        item_id: Number(formData.item_id), 
         qty: Number(formData.qty) 
       });
       
       if (response.data.status) {
-        setFormData({ date: new Date().toISOString().split('T')[0], material_id: '', qty: '' });
+        setFormData({ date: new Date().toISOString().split('T')[0], item_id: '', qty: '' });
         onSuccess();
         onClose();
       } else {
@@ -125,14 +125,14 @@ const AddOpeningStockModal: React.FC<AddOpeningStockModalProps> = ({ isOpen, onC
           <div className="input-group">
             <label className="input-label">{translang.select_item}</label>
             <Select 
-              value={formData.material_id}
-              onChange={(value) => setFormData({ ...formData, material_id: value as string })}
+              value={formData.item_id}
+              onChange={(value) => setFormData({ ...formData, item_id: value as string })}
               options={items.map(i => ({ value: String(i.id), label: i.name }))}
               placeholder={`-- ${translang.select_item} --`}
             />
-            {validationErrors.material_id && (
+            {validationErrors.item_id && (
               <div style={{ color: 'var(--error-color)', fontSize: '12px', marginTop: '4px' }}>
-                {validationErrors.material_id}
+                {validationErrors.item_id}
               </div>
             )}
           </div>

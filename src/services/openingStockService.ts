@@ -4,7 +4,7 @@ export const getOpeningStockDatatable = async (page = 1, limit = 10) => {
   return await api.get(`/opening-stock/datatable?page=${page}&limit=${limit}`);
 };
 
-export const storeOpeningStock = async (data: { date: string; material_id: number; qty: number }) => {
+export const storeOpeningStock = async (data: { date: string; item_id: number; qty: number }) => {
   return await api.post(`/opening-stock/store`, data);
 };
 

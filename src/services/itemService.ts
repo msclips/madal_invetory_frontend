@@ -21,5 +21,5 @@ export const showItem = async (itemId: number) => {
 };
 
 export const updateItem = async (data) => {
-  return await api.put(`/item/update/`, data);
+  return await api.put(`/item/update`, data);
 };

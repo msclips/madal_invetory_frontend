@@ -60,6 +60,11 @@ const Layout = () => {
             Items
           </NavLink>
           
+          <NavLink to="/opening-stock" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
+            <Box size={18} />
+            Opening Stock
+          </NavLink>
+          
           <NavLink to="/customers" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
             <Users size={18} />
             Customers

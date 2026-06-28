@@ -4,6 +4,10 @@ export const getItemsDatatable = async (page = 1, limit = 10) => {
   return await api.get(`/item/datatable?page=${page}&limit=${limit}`);
 };
 
+export const getItemAutocomplete = async (search = '') => {
+  return await api.get(`/item/autocomplete?search=${search}`);
+};
+
 export const storeItem = async (data: { name: string; unit_id: number }) => {
   return await api.post(`/item/store`, data);
 };

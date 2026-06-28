@@ -36,5 +36,19 @@
   "save": "Save",
   "saving": "Saving...",
   "validation_name_required": "Name is required",
-  "validation_unit_required": "Unit is required"
+  "validation_unit_required": "Unit is required",
+  "opening_stock_title": "Opening Stock",
+  "opening_stock_description": "Manage your initial inventory levels",
+  "add_opening_stock": "Add Opening Stock",
+  "search_opening_stock": "Search opening stock...",
+  "failed_fetch_opening_stock": "Failed to fetch opening stock",
+  "loading_opening_stock": "Loading opening stock...",
+  "no_opening_stock_found": "No opening stock found.",
+  "add_opening_stock_title": "Add New Opening Stock",
+  "date": "Date",
+  "select_item": "Select Item",
+  "quantity": "Quantity",
+  "validation_date_required": "Date is required",
+  "validation_item_required": "Item is required",
+  "validation_quantity_required": "Quantity is required and must be greater than 0"
 }

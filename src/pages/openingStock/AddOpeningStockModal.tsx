@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getItemAutocomplete } from '../services/itemService';
-import { storeOpeningStock } from '../services/openingStockService';
-import { useTranslate } from '../config/translate/translateContext';
-import { Input } from './ui/Input';
-import { Select } from './ui/Select';
+import { getItemAutocomplete } from '../../services/item/itemService';
+import { storeOpeningStock } from '../../services/openingStock/openingStockService';
+import { useTranslate } from '../../config/translate/translateContext';
+import { Input } from '../../components/ui/Input';
+import { Select } from '../../components/ui/Select';
 
 interface AddOpeningStockModalProps {
   isOpen: boolean;

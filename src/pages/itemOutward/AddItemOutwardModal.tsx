@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { getItemAutocomplete } from '../services/itemService';
-import { storeItemOutward } from '../services/itemOutwardService';
-import { getClosingStock } from '../services/ledgerService';
-import { useTranslate } from '../config/translate/translateContext';
-import { Input } from './ui/Input';
-import { Select } from './ui/Select';
+import { getItemAutocomplete } from '../../services/item/itemService';
+import { storeItemOutward } from '../../services/itemOutward/itemOutwardService';
+import { getClosingStock } from '../../services/ledger/ledgerService';
+import { useTranslate } from '../../config/translate/translateContext';
+import { Input } from '../../components/ui/Input';
+import { Select } from '../../components/ui/Select';
 
 interface AddItemOutwardModalProps {
   isOpen: boolean;

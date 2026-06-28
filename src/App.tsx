@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Items from './pages/Items';
-import OpeningStock from './pages/OpeningStock';
-import ItemInwards from './pages/ItemInwards';
-import ItemOutwards from './pages/ItemOutwards';
+import Login from './pages/auth/Login';
+import Dashboard from './pages/dashboard/Dashboard';
+import Items from './pages/item/Items';
+import OpeningStock from './pages/openingStock/OpeningStock';
+import ItemInwards from './pages/itemInward/ItemInwards';
+import ItemOutwards from './pages/itemOutward/ItemOutwards';
 import { setupInterceptors } from './services/api';
 import { getItem, deleteDB } from './utils/db';
 import { TranslateProvider } from './config/translate/translateContext';

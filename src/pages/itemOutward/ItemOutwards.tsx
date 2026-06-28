@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { PackageMinus, Plus, Search, Trash2 } from 'lucide-react';
-import { getItemOutwardDatatable, deleteItemOutward } from '../services/itemOutwardService';
-import { getItemOutwardTableConfig } from '../config/tableConfig';
-import { useTranslate } from '../config/translate/translateContext';
-import AddItemOutwardModal from '../components/AddItemOutwardModal';
+import { getItemOutwardDatatable, deleteItemOutward } from '../../services/itemOutward/itemOutwardService';
+import { getItemOutwardTableConfig } from '../../config/tableConfig';
+import { useTranslate } from '../../config/translate/translateContext';
+import AddItemOutwardModal from './AddItemOutwardModal';
 
 interface Item {
   id: number;

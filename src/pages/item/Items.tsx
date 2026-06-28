@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Package, Plus, Search, Edit2, Trash2 } from 'lucide-react';
-import { getItemsDatatable, deleteItem } from '../services/itemService';
-import { getItemTableConfig } from '../config/tableConfig';
-import { useTranslate } from '../config/translate/translateContext';
-import AddItemModal from '../components/AddItemModal';
-import EditItemModal from '../components/EditItemModal';
+import { getItemsDatatable, deleteItem } from '../../services/item/itemService';
+import { getItemTableConfig } from '../../config/tableConfig';
+import { useTranslate } from '../../config/translate/translateContext';
+import AddItemModal from './AddItemModal';
+import EditItemModal from './EditItemModal';
 
 interface Unit {
   id: number;

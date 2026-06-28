@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getUnitAutocomplete } from '../services/unitService';
-import { storeItem } from '../services/itemService';
-import { useTranslate } from '../config/translate/translateContext';
-import { Input } from './ui/Input';
-import { Select } from './ui/Select';
+import { getUnitAutocomplete } from '../../services/unit/unitService';
+import { storeItem } from '../../services/item/itemService';
+import { useTranslate } from '../../config/translate/translateContext';
+import { Input } from '../../components/ui/Input';
+import { Select } from '../../components/ui/Select';
 
 interface AddItemModalProps {
   isOpen: boolean;

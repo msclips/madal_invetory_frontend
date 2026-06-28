@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Package, Users, DollarSign, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { getDashboardData } from '../services/dashboard/dashboardService';
-import { getItem, deleteDB } from '../utils/db';
+import { getDashboardData } from '../../services/dashboard/dashboardService';
+import { getItem, deleteDB } from '../../utils/db';
 
 const Dashboard = () => {
   const navigate = useNavigate();

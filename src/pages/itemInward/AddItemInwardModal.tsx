@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getItemAutocomplete } from '../services/itemService';
-import { storeItemInward } from '../services/itemInwardService';
-import { useTranslate } from '../config/translate/translateContext';
-import { Input } from './ui/Input';
-import { Select } from './ui/Select';
+import { getItemAutocomplete } from '../../services/item/itemService';
+import { storeItemInward } from '../../services/itemInward/itemInwardService';
+import { useTranslate } from '../../config/translate/translateContext';
+import { Input } from '../../components/ui/Input';
+import { Select } from '../../components/ui/Select';
 
 interface AddItemInwardModalProps {
   isOpen: boolean;

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Package, Plus, Search, Trash2 } from 'lucide-react';
-import { getOpeningStockDatatable, deleteOpeningStock } from '../services/openingStockService';
-import { getOpeningStockTableConfig } from '../config/tableConfig';
-import { useTranslate } from '../config/translate/translateContext';
-import AddOpeningStockModal from '../components/AddOpeningStockModal';
+import { getOpeningStockDatatable, deleteOpeningStock } from '../../services/openingStock/openingStockService';
+import { getOpeningStockTableConfig } from '../../config/tableConfig';
+import { useTranslate } from '../../config/translate/translateContext';
+import AddOpeningStockModal from './AddOpeningStockModal';
 
 interface Item {
   id: number;

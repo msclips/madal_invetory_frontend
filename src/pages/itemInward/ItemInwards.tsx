@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { PackageOpen, Plus, Search, Trash2 } from 'lucide-react';
-import { getItemInwardDatatable, deleteItemInward } from '../services/itemInwardService';
-import { getItemInwardTableConfig } from '../config/tableConfig';
-import { useTranslate } from '../config/translate/translateContext';
-import AddItemInwardModal from '../components/AddItemInwardModal';
+import { getItemInwardDatatable, deleteItemInward } from '../../services/itemInward/itemInwardService';
+import { getItemInwardTableConfig } from '../../config/tableConfig';
+import { useTranslate } from '../../config/translate/translateContext';
+import AddItemInwardModal from './AddItemInwardModal';
 
 interface Item {
   id: number;

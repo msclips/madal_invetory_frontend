@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box } from 'lucide-react';
-import { loginUser } from '../services/auth/authService';
-import { setItem, getItem } from '../utils/db';
-import { useTranslate } from '../config/translate/translateContext';
+import { loginUser } from '../../services/auth/authService';
+import { setItem, getItem } from '../../utils/db';
+import { useTranslate } from '../../config/translate/translateContext';
 
 const Login = () => {
   const navigate = useNavigate();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getItemAutocomplete } from '../services/itemService';
 import { storeItemOutward } from '../services/itemOutwardService';
+import { getClosingStock } from '../services/ledgerService';
 import { useTranslate } from '../config/translate/translateContext';
 import { Input } from './ui/Input';
 import { Select } from './ui/Select';
@@ -18,12 +19,35 @@ const AddItemOutwardModal: React.FC<AddItemOutwardModalProps> = ({ isOpen, onClo
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState<{ [key: string]: string }>({});
+  const [maxQty, setMaxQty] = useState<number | null>(null);
+  const [loadingStock, setLoadingStock] = useState(false);
 
   useEffect(() => {
     if (isOpen && items.length === 0) {
       fetchItems();
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    const fetchStock = async () => {
+      if (!formData.item_id) {
+        setMaxQty(null);
+        return;
+      }
+      setLoadingStock(true);
+      try {
+        const response = await getClosingStock(Number(formData.item_id));
+        if (response.data.status) {
+          setMaxQty(response.data.data.closing_stock);
+        }
+      } catch (e) {
+        console.error('Failed to load closing stock', e);
+      } finally {
+        setLoadingStock(false);
+      }
+    };
+    fetchStock();
+  }, [formData.item_id]);
 
   const fetchItems = async () => {
     try {
@@ -49,6 +73,8 @@ const AddItemOutwardModal: React.FC<AddItemOutwardModalProps> = ({ isOpen, onClo
     }
     if (!formData.qty || isNaN(Number(formData.qty)) || Number(formData.qty) <= 0) {
       errors.qty = translang.validation_quantity_required;
+    } else if (maxQty !== null && Number(formData.qty) > maxQty) {
+      errors.qty = `Quantity cannot exceed current stock (${maxQty})`;
     }
     
     if (Object.keys(errors).length > 0) {
@@ -137,7 +163,14 @@ const AddItemOutwardModal: React.FC<AddItemOutwardModalProps> = ({ isOpen, onClo
             )}
           </div>
           <div className="input-group" style={{ marginBottom: '24px' }}>
-            <label className="input-label">{translang.quantity}</label>
+            <label className="input-label">
+              {translang.quantity}
+              {maxQty !== null && (
+                <span style={{ fontSize: '12px', color: 'var(--accents-5)', marginLeft: '8px', fontWeight: 'normal' }}>
+                  (Max: {loadingStock ? '...' : maxQty})
+                </span>
+              )}
+            </label>
             <Input 
               type="text"
               value={formData.qty}

@@ -77,17 +77,21 @@ button {
 }
 
 .input {
-  padding: 10px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.15s ease;
-  outline: none;
+  display: flex;
+  height: 40px;
   width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
 }
 
 .input:focus {
   border-color: var(--fg-color);
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--fg-color);
 }
 
 /* Buttons */
@@ -103,6 +107,10 @@ button {
   transition: all 0.2s ease;
   outline: none;
   border: 1px solid transparent;
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--fg-color);
 }
 
 .btn-primary {

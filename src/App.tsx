@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Items from './pages/Items';
 import { setupInterceptors } from './services/api';
 import { getItem, deleteDB } from './utils/db';
 import { TranslateProvider } from './config/translate/translateContext';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
+            <Route path="items" element={<Items />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

@@ -3,7 +3,7 @@ import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 import { 
   Box, LogOut, LayoutDashboard, Package, 
   Users, ShoppingCart, FileText, UserCheck, 
-  Settings, Receipt, PackageMinus
+  Settings, Receipt, PackageMinus, ShieldAlert
 } from 'lucide-react';
 import { logoutUser } from '../services/auth/authService';
 import { getItem, deleteDB } from '../utils/db';
@@ -11,6 +11,7 @@ import { getItem, deleteDB } from '../utils/db';
 const Layout = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('Admin User');
+  const [isSuperUser, setIsSuperUser] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -21,8 +22,9 @@ const Layout = () => {
       }
       
       const user = await getItem('user');
-      if (user && user.username) {
-        setUsername(user.username);
+      if (user) {
+        if (user.username) setUsername(user.username);
+        if (Number(user.super_user) === 1) setIsSuperUser(true);
       }
     };
     
@@ -74,6 +76,13 @@ const Layout = () => {
             <PackageMinus size={18} />
             Item Outwards
           </NavLink>
+          
+          {isSuperUser && (
+            <NavLink to="/audit" className={({isActive}) => `sidebar-link ${isActive ? 'active' : ''}`}>
+              <ShieldAlert size={18} />
+              System Audit
+            </NavLink>
+          )}
         </nav>
       </aside>
 

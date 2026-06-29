@@ -6,6 +6,7 @@ import Items from './pages/item/Items';
 import OpeningStock from './pages/openingStock/OpeningStock';
 import ItemInwards from './pages/itemInward/ItemInwards';
 import ItemOutwards from './pages/itemOutward/ItemOutwards';
+import Audit from './pages/audit/Audit';
 import { setupInterceptors } from './services/api';
 import { getItem, deleteDB } from './utils/db';
 import { TranslateProvider } from './config/translate/translateContext';
@@ -30,6 +31,7 @@ function App() {
             <Route path="opening-stock" element={<OpeningStock />} />
             <Route path="item-inwards" element={<ItemInwards />} />
             <Route path="item-outwards" element={<ItemOutwards />} />
+            <Route path="audit" element={<Audit />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

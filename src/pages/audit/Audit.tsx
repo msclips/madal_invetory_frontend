@@ -125,7 +125,6 @@ const Audit = () => {
                 <th style={{ padding: '16px 24px', fontWeight: 600, color: '#475569', fontSize: '13px' }}>Performed By</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600, color: '#475569', fontSize: '13px' }}>Module / Entity</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600, color: '#475569', fontSize: '13px' }}>Operation</th>
-                <th style={{ padding: '16px 24px', fontWeight: 600, color: '#475569', fontSize: '13px' }}>Source</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600, color: '#475569', fontSize: '13px' }}>IP Address</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600, color: '#475569', fontSize: '13px', textAlign: 'right' }}>Changes</th>
               </tr>
@@ -133,11 +132,11 @@ const Audit = () => {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={7} style={{ padding: '32px', textAlign: 'center', color: 'var(--accents-5)' }}>Loading audits...</td>
+                  <td colSpan={6} style={{ padding: '32px', textAlign: 'center', color: 'var(--accents-5)' }}>Loading audits...</td>
                 </tr>
               ) : audits.length === 0 ? (
                 <tr>
-                  <td colSpan={7} style={{ padding: '32px', textAlign: 'center', color: 'var(--accents-5)' }}>No audits found</td>
+                  <td colSpan={6} style={{ padding: '32px', textAlign: 'center', color: 'var(--accents-5)' }}>No audits found</td>
                 </tr>
               ) : (
                 audits.map(audit => (
@@ -160,11 +159,6 @@ const Audit = () => {
                         color: '#fff', textTransform: 'uppercase'
                       }}>
                         {audit.action}
-                      </span>
-                    </td>
-                    <td style={{ padding: '16px 24px' }}>
-                      <span style={{ padding: '2px 8px', border: '1px solid #cbd5e1', borderRadius: '4px', fontSize: '12px', color: '#475569', fontWeight: 600 }}>
-                        API
                       </span>
                     </td>
                     <td style={{ padding: '16px 24px', color: '#64748b', fontSize: '14px' }}>{audit.ip_address || 'N/A'}</td>
@@ -238,10 +232,6 @@ const Audit = () => {
                   <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 700, background: selectedAudit.action === 'Create' || selectedAudit.action === 'Login' ? '#22c55e' : selectedAudit.action === 'Update' ? '#3b82f6' : '#ef4444', color: '#fff', textTransform: 'uppercase' }}>
                     {selectedAudit.action}
                   </span>
-                </div>
-                <div>
-                  <div style={{ color: '#94a3b8', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', marginBottom: '4px' }}>Source System</div>
-                  <span style={{ padding: '2px 8px', border: '1px solid #0f172a', borderRadius: '4px', fontSize: '11px', color: '#0f172a', fontWeight: 700 }}>API</span>
                 </div>
                 <div>
                   <div style={{ color: '#94a3b8', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', marginBottom: '4px' }}>Timestamp</div>

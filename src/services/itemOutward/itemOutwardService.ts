@@ -1,7 +1,7 @@
 import api from '../api';
 
-export const getItemOutwardDatatable = async (page = 1, limit = 10) => {
-  return await api.get(`/item-outward/datatable?page=${page}&limit=${limit}`);
+export const getItemOutwardDatatable = async (page = 1, limit = 10, search = '') => {
+  return await api.get(`/item-outward/datatable?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`);
 };
 
 export const storeItemOutward = async (data: { date: string; item_id: number; qty: number }) => {

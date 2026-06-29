@@ -1,7 +1,7 @@
 import api from '../api';
 
-export const getItemsDatatable = async (page = 1, limit = 10) => {
-  return await api.get(`/item/datatable?page=${page}&limit=${limit}`);
+export const getItemsDatatable = async (page = 1, limit = 10, search = '') => {
+  return await api.get(`/item/datatable?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`);
 };
 
 export const getItemAutocomplete = async (search = '') => {

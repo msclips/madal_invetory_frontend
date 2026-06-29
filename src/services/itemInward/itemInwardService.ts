@@ -1,7 +1,7 @@
 import api from '../api';
 
-export const getItemInwardDatatable = async (page = 1, limit = 10) => {
-  return await api.get(`/item-inward/datatable?page=${page}&limit=${limit}`);
+export const getItemInwardDatatable = async (page = 1, limit = 10, search = '') => {
+  return await api.get(`/item-inward/datatable?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`);
 };
 
 export const storeItemInward = async (data: { date: string; item_id: number; qty: number }) => {

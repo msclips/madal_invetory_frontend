@@ -31,14 +31,19 @@ const Items = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingItemId, setEditingItemId] = useState<number | null>(null);
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   useEffect(() => {
-    fetchItems(page);
-  }, [page]);
+    const delayDebounceFn = setTimeout(() => {
+      fetchItems(page);
+    }, 300);
+    return () => clearTimeout(delayDebounceFn);
+  }, [page, searchQuery]);
 
   const fetchItems = async (currentPage: number) => {
     setLoading(true);
     try {
-      const response = await getItemsDatatable(currentPage, limit);
+      const response = await getItemsDatatable(currentPage, limit, searchQuery);
       const { data } = response.data;
       if (response.data.status) {
         setItems(data.data);
@@ -96,6 +101,8 @@ const Items = () => {
             <input 
               type="text" 
               placeholder={translang.search_items} 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               style={{ 
                 width: '100%', 
                 padding: '8px 12px 8px 36px', 

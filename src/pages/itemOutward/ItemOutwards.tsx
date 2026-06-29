@@ -30,14 +30,19 @@ const ItemOutwards = () => {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   useEffect(() => {
-    fetchItems(page);
-  }, [page]);
+    const delayDebounceFn = setTimeout(() => {
+      fetchItems(page);
+    }, 300);
+    return () => clearTimeout(delayDebounceFn);
+  }, [page, searchQuery]);
 
   const fetchItems = async (currentPage: number) => {
     setLoading(true);
     try {
-      const response = await getItemOutwardDatatable(currentPage, limit);
+      const response = await getItemOutwardDatatable(currentPage, limit, searchQuery);
       const { data } = response.data;
       if (response.data.status) {
         setItems(data.data);
@@ -90,6 +95,8 @@ const ItemOutwards = () => {
             <input 
               type="text" 
               placeholder={translang.search_item_outward} 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               style={{ 
                 width: '100%', 
                 padding: '8px 12px 8px 36px', 

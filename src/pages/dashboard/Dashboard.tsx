@@ -74,7 +74,7 @@ const Dashboard = () => {
       </div>
     
       <div style={{ marginBottom: '24px' }}>
-        <h2 style={{ fontSize: '18px', margin: 0 }}>Stock Report (Closing Stock)</h2>
+        <h2 style={{ fontSize: '18px', margin: 0 }}>Stock</h2>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', paddingBottom: '32px' }}>

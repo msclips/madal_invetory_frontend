@@ -16,6 +16,7 @@ interface ItemInwardItem {
   item_id: number;
   qty: number;
   item_name: string;
+  is_delete: boolean;
 }
 
 const ItemInwards = () => {
@@ -144,12 +145,14 @@ const ItemInwards = () => {
                       );
                     })}
                     <td style={{ padding: '16px 24px', textAlign: 'right' }}>
-                      <button 
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--error-color)' }}
-                        onClick={() => handleDelete(item.id)}
-                      >
-                        <Trash2 size={16} />
-                      </button>
+                      {item.is_delete && (
+                        <button 
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--error-color)' }}
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))
